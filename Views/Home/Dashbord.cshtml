@@ -1,0 +1,51 @@
+@model Idea
+  <div class="row">
+      <h1 class="col-10">Hi @ViewBag.User.FirstName</h1>
+      <a class ="col" href="/clear">LOG OUT</a>
+
+  <div class="row mt-5">
+    <div class="col">
+      <form action="/createIdea" method="post">
+        <p>
+          <p><span asp-validation-for="IdeaText" class="text-danger"></span></p>
+          <textarea asp-for="IdeaText" cols="70" rows="3"></textarea>
+          <input type="hidden" asp-for="UserId" value="@ViewBag.User.UserId">
+          <input class="bg-success" type="submit" value="Add Idea">
+        </p>
+      </form>
+    </div>
+  </div>
+  <div class="row ml-5 mt-5" >
+    <div class="col">
+      @foreach(Idea i in @ViewBag.all_ideas)
+      {
+        <p>
+
+          <a href="/UserINFO/@i.User.UserId">@i.User.FirstName</a> says:
+        </p>
+        <p>
+          <textarea disabled placeholder=" @i.IdeaText" cols="70" rows="3" ></textarea>
+        </p>
+        <p class="ml-5">
+          @if(@i.UserId == @ViewBag.User.UserId)
+          {
+            <a href="/Delete/@i.IdeaId">Delete</a>
+          }
+          else
+          {
+            @if(@i.Likes.Any(q=>q.UserId == @ViewBag.User.UserId))
+            {
+            <a href="/Unlike/@i.IdeaId">Un-Like</a>
+            }
+            else
+            {
+              <a href="/addLike/@i.IdeaId">Like</a>
+            }
+          }
+
+
+          <a href="/IdeaINFO/@i.IdeaId">@i.Likes.Count People</a> like this
+         </p>
+      }
+    </div>
+  </div>

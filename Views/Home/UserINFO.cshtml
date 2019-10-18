@@ -1,0 +1,18 @@
+  <div class="row">
+      <h1 class="col-8">User Info</h1>
+      <a class ="col" href="/Dashbord">Dashbord</a>
+      <a class ="col" href="/clear">LOG OUT</a>
+  </div> 
+
+  <div class="row">
+    <div class="col">
+      <p>Name: @ViewBag.User.FirstName</p>
+      <p>Alias: @ViewBag.User.LastName</p>
+      <p>Email: @ViewBag.User.Email</p>
+      <p>Total Number of Posts: @ViewBag.User.Ideas.Count</p>
+
+
+
+      <p>Total Number of Likes: @ViewBag.notlike.Count</p>
+    </div>
+  </div>

@@ -1,0 +1,34 @@
+  <div class="row">
+      <h1 class="col-8">Idea Info</h1>
+      <a class ="col" href="/Dashbord">Dashbord</a>
+      <a class ="col" href="/clear">LOG OUT</a>
+  </div> 
+
+  <div class="row">
+    <div class="col">
+      <p>@ViewBag.oneIdea.User.FirstName says:</p>
+      <textarea disabled placeholder="@ViewBag.oneIdea.IdeaText" cols="70" rows="3" ></textarea>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-4">
+      <p>People Who liked this post</p>
+      <table class="table">
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">Alias</th>
+              <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+          @foreach(Like i in @ViewBag.oneIdea.Likes)
+          {
+            <tr>
+              <td><a href="/UserINFO/@i.User.UserId">@i.User.LastName</a></td>
+              <td>@i.User.FirstName @i.User.LastName</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
